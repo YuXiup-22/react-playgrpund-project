@@ -7,4 +7,5 @@ export default function Header() {
       <span>React Playground</span>
     </div>
   </div>
+  
 }

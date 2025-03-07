@@ -1,9 +1,13 @@
-import { useState } from 'react'
-import './App.scss'
+import { useState } from "react";
+import "./App.scss";
 import ReactPlayground from "./ReactPlayground";
+import { PlaygroundProvider } from "./ReactPlayground/PlaygroundContext";
 function App() {
-
-  return <ReactPlayground></ReactPlayground>
+  return (
+    <PlaygroundProvider>
+      <ReactPlayground></ReactPlayground>
+    </PlaygroundProvider>
+  );
 }
 
-export default App
+export default App;

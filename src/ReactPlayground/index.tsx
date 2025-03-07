@@ -5,7 +5,7 @@ import Preview   from "./components/Preview";
 import EditCode from "./components/EditCode";
 export default function ReactPlayground() {
   
-  return <div style={{height:'100vh',}}>
+  return <div style={{height:'100vh',display:'flex',flexDirection:'column'}}>
     <Header></Header>
     <Allotment defaultSizes={[100,100]}>
       <Allotment.Pane minSize={0}>
