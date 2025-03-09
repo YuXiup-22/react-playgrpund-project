@@ -17,10 +17,12 @@ import iframeRaw from "./iframeRaw.html?raw";
 import { IMPORT_MAP_FILE_NAME } from "../../files";
 export default function Preview() {
   const { files } = useContext(PlaygroundContext);
+  console.log(files,'files更新')
   const [compilerCode, setCompilerCode] = useState("");
   const [iframeUrl, setIframeUrl] = useState('');
   useEffect(() => {
     const res = compile(files);
+    console.log(res,'files更新,编译后的结果')
     setCompilerCode(res);
   }, [files]);
   // 为什么files文件变化监听可以如此深层次，

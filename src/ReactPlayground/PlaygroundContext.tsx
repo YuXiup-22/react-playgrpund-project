@@ -52,13 +52,15 @@ export const PlaygroundProvider = (props: PropsWithChildren) => {
       return;
     const { [oldFileName]: value, ...rest } = files;
     const newFile = {
-      ...value,
-      name: newFileName,
-      language: fileName2Language(newFileName),
+      [newFileName]: {
+        ...value,
+        name: newFileName,
+        language: fileName2Language(newFileName),
+      },
     };
     setFiles({
       ...rest,
-      newFile,
+      ...newFile,
     });
   };
 

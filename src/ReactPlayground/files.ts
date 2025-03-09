@@ -34,24 +34,4 @@ export const initFiles: Files = {
     language: fileName2Language(IMPORT_MAP_FILE_NAME),
     value: importMap,
   },
-  'app2.css':{
-    name:'app2.css',
-    language:'css',
-    value:AppCss
-  },
-  'app3.css':{
-    name:'app3.css',
-    language:'css',
-    value:AppCss
-  },
-  'app4.css':{
-    name:'app4.css',
-    language:'css',
-    value:AppCss
-  },
-  'app5.css':{
-    name:'app5.css',
-    language:'css',
-    value:AppCss
-  },
 };
