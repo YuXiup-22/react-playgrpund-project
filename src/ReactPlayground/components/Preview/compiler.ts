@@ -88,6 +88,7 @@ function customResolver(files: Files): PluginObj {
         if (modulePath.startsWith(".")) {
           // 找到对应的文件
           const file = getModuleFile(files, modulePath);
+          if(!file) return
           if (file.name.endsWith(".css")) {
             path.node.source.value = css2Js(file)
           } else if (file.name.endsWith(".json")) {
