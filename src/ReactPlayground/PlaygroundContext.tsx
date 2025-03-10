@@ -1,5 +1,5 @@
-import { createContext, PropsWithChildren, useState } from "react";
-import { fileName2Language } from "./utils";
+import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import { fileName2Language,compress,uncompress } from "./utils";
 import { initFiles } from "./files";
 // 多个文件数据，editor、preiview组件都需要拿到数据，所以使用context
 export interface File {
@@ -26,12 +26,20 @@ export interface PlaygroundContext {
 export const PlaygroundContext = createContext<PlaygroundContext>({
   selectedFileName: "App.tsx",
 } as PlaygroundContext);
-
+const getFilesFromUrl = ()=>{
+  let files:Files|undefined
+  try {
+    const hash =uncompress(window.location.hash.slice(1))
+    files = JSON.parse(hash)
+  } catch (error) {
+    console.log(error)
+  }
+  return files
+}
 // 提供一个PlaygroundProvider组件，使得数据能在多个组件中共享
-
 export const PlaygroundProvider = (props: PropsWithChildren) => {
   const { children } = props;
-  const [files, setFiles] = useState<Files>(initFiles);
+  const [files, setFiles] = useState<Files>(getFilesFromUrl()||initFiles);
   const [selectedFileName, setSelectFileName] = useState("App.tsx");
   const [theme,setTheme]  = useState('light')
   const addFile = (name: string) => {
@@ -66,7 +74,11 @@ export const PlaygroundProvider = (props: PropsWithChildren) => {
       ...newFile,
     });
   };
-
+  useEffect(()=>{
+    const hash = compress(JSON.stringify(files))
+    // 把url里不支持的字符做转换
+    window.location.hash = hash
+  },[files])
   return (
     <PlaygroundContext.Provider
       value={{
