@@ -20,7 +20,7 @@ export default function EditCode() {
   // }`,
   //     language: "typescript",
   //   };
-  const { files, selectedFileName, setFiles } = useContext(PlaygroundContext);
+  const { files, selectedFileName, setFiles,theme } = useContext(PlaygroundContext);
   const file = files[selectedFileName];
   const onEditorChange = (value?: string) => {
     console.log(value, "change");
@@ -30,7 +30,9 @@ export default function EditCode() {
   return (
     <div style={{ display: "flex", height: "100%", flexDirection: "column" }}>
       <FileNameList></FileNameList>
-      <Editor file={file} onChange={debounce(onEditorChange,500)}></Editor>
+      <Editor file={file} onChange={debounce(onEditorChange,500)} options={{
+        theme:`vs-${theme}`
+      }}></Editor>
     </div>
   );
 }
